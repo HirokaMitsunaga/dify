@@ -35,10 +35,12 @@ server {
       include proxy.conf;
     }
 
-    location / {
-      proxy_pass http://web:3000;
-      include proxy.conf;
-    }
+   location / {
+       auth_basic "Restricted";
+       auth_basic_user_file /etc/nginx/.htpasswd;
+       proxy_pass http://web:3000;  # ここは実際のバックエンドサービスに合わせて変更
+       include proxy.conf;
+   }
 
     # placeholder for acme challenge location
     ${ACME_CHALLENGE_LOCATION}
