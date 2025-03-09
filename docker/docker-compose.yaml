@@ -593,6 +593,7 @@ services:
   # use `docker-compose --profile certbot up` to start the certbot service.
   certbot:
     image: certbot/certbot
+    restart: always
     profiles:
       - certbot
     volumes:
